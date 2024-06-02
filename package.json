@@ -16,6 +16,7 @@
         "@heroicons/react": "^2.0.18",
         "@radix-ui/react-dialog": "^1.0.5",
         "@rainbow-me/rainbowkit": "^1.0.2",
+        "caniuse-lite": "^1.0.30001626",
         "ethers": "^6.8.0",
         "next": "^13.4.2",
         "react": "18.2.0",
