@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Disclosure } from "@headlessui/react";
-import { MagnifyingGlassIcon, BellAlertIcon, ServerStackIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, BellAlertIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useConnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import Link from "next/link";
 export default function Header() {
-    const [hideConnectBtn, setHideConnectBtn] = useState(false);
     const [searchVisible, setSearchVisible] = useState(false); // State for search visibility
     const [searchValue, setSearchValue] = useState('');
     const { connect } = useConnect({
