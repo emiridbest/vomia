@@ -9,13 +9,15 @@ export default function Header() {
     const [hideConnectBtn, setHideConnectBtn] = useState(false);
     const [searchVisible, setSearchVisible] = useState(false); // State for search visibility
     const [searchValue, setSearchValue] = useState('');
-
     const { connect } = useConnect({
         connector: new InjectedConnector(),
     });
 
     useEffect(() => {
-        connect();
+        if (window.ethereum && window.ethereum.isMiniPay) {
+            setHideConnectBtn(true);
+            connect();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const handleSearchIconClick = () => {
