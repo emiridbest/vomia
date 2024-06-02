@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Disclosure } from "@headlessui/react";
 import { MagnifyingGlassIcon, BellAlertIcon, ServerStackIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -14,11 +15,7 @@ export default function Header() {
     });
 
     useEffect(() => {
-        if (window.ethereum && window.ethereum.isMiniPay) {
-            setHideConnectBtn(true);
-            connect();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        connect();
     }, []);
     const handleSearchIconClick = () => {
         setSearchVisible(true);
