@@ -118,13 +118,13 @@ const Main: React.FC = () => {
     const toggleBalanceDetails = () => {
         setShowBalanceDetails(!showBalanceDetails);
     };
-    function formatBalance(balance, decimals = 2) {
-    const balanceNumber = parseFloat(balance);
-    if (isNaN(balanceNumber)) {
-        return "0.000";
+    function formatBalance(cUSDBalance: any, decimals = 2) {
+        const balanceNumber = parseFloat(cUSDBalance);
+        if (isNaN(balanceNumber)) {
+            return "0.00";
+        }
+        return balanceNumber.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    return balanceNumber.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 
     return (
@@ -153,7 +153,7 @@ const Main: React.FC = () => {
                             </div>
                             {showBalanceDetails && (
                                 <div className="mt-2 text-black text-4xl font-bold text-overflow-hidden">
-                    {formatBalance(cUSDBalance)}cUSD
+                                    {formatBalance(cUSDBalance)} cUSD
                                 </div>
                             )}
                             <p className="text-sm">Your wallet balance</p>
