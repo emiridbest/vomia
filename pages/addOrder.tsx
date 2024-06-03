@@ -19,9 +19,10 @@ const AddOrder: React.FC = () => {
     const [fiatCurrency, setFiatCurrency] = useState<FiatCurrency>(FiatCurrency.NGN);
     const router = useRouter();
 
-    const handleAddSellOrder = async (amount: number, price: number, bank: string, accountNumber: string, fiatCurrency: FiatCurrency) => {
+    const handleAddSellOrder = async (_amount: number, price: number, bank: string, accountNumber: string, fiatCurrency: FiatCurrency) => {
         if (window.ethereum) {
             try {
+                const amount = _amount * 1e18;
                 const provider = new BrowserProvider(window.ethereum);
                 const signer = await provider.getSigner();
                 const contract = new Contract(contractAddress, abi, signer);
@@ -130,3 +131,7 @@ const AddOrder: React.FC = () => {
 };
 
 export default AddOrder;
+function parseEthers(_amount: number) {
+    throw new Error('Function not implemented.');
+}
+

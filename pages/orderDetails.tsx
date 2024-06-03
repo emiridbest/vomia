@@ -122,7 +122,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, isSellOrder }) => {
     const price = order[2];
     const buyer = order[8].toString();
     const seller = order[7].toString();
-    const total = (order[2] * order[1]).toString();
+    const total = (units * price).toString();
 
     function truncateAddress(address: string, startLength = 6, endLength = 4) {
         if (!address) return '';

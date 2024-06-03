@@ -65,10 +65,48 @@ const Main: React.FC = () => {
                 setSellOrders(formattedSellOrders);
                 setBuyOrders(formattedBuyOrders);
 
-                const mySellOrders = formattedSellOrders.filter(order => order[6].toLowerCase() === address.toLowerCase());
-                const myBuyOrders = formattedBuyOrders.filter(order => order[7].toLowerCase() === address.toLowerCase());
+
+            } catch (error) {
+                console.error("Error fetching orders:", error);
+            }
+        }
+    }, []);
+    const getMyOrders = useCallback(async (paid: boolean) => {
+        if (window.ethereum) {
+            try {
+                const provider = new BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                const contract = new Contract(contractAddress, abi, signer);
+                const address = await signer.getAddress();
+
+                const sellOrderIds = await contract.getAllSellOrders();
+                const buyOrderIds = await contract.getAllBuyOrders();
+
+                const formattedSellOrders: Order[] = [];
+                for (const sellOrderIdBN of sellOrderIds) {
+                    const id = parseInt(sellOrderIdBN + 1);
+                    const details = await contract.getSellOrderDetails(id);
+                    formattedSellOrders.push({ ...details, key: id });
+                }
+
+
+                const formattedBuyOrders: Order[] = [];
+                for (const buyOrderIdBN of buyOrderIds) {
+                    const id = parseInt(buyOrderIdBN + 1);
+                    const details = await contract.getBuyOrderDetails(id);
+                    formattedBuyOrders.push({ ...details, key: id });
+                    console.log(formattedBuyOrders, `11`);
+                }
+                const mySellOrders = formattedSellOrders.filter(order =>
+                    order[6].toLowerCase() === address.toLowerCase() && order[5] == paid
+                );
+                const myBuyOrders = formattedBuyOrders.filter(order =>
+                    order[7].toLowerCase() === address.toLowerCase() && order[5] == paid
+                );
+
                 setMySellOrders(mySellOrders);
                 setMyBuyOrders(myBuyOrders);
+
 
 
             } catch (error) {
@@ -76,10 +114,6 @@ const Main: React.FC = () => {
             }
         }
     }, []);
-
-    useEffect(() => {
-        getOrders();
-    }, [getOrders]);
 
     const handleAddOrder = () => {
         router.push('/addOrder');
@@ -116,6 +150,7 @@ const Main: React.FC = () => {
 
     useEffect(() => {
         getOrders();
+        getMyOrders(false);
         getCUSDBalance();
     }, [getOrders, getCUSDBalance]);
 
