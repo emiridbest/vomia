@@ -123,8 +123,16 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, isSellOrder }) => {
     const buyer = order[8].toString();
     const seller = order[7].toString();
     const total = (order[2] * order[1]).toString();
+
+    function truncateAddress(address: string, startLength = 6, endLength = 4) {
+        if (!address) return '';
+        const start = address.substring(0, startLength);
+        const end = address.substring(address.length - endLength);
+        return `${start}...${end}`;
+    }
+    
     return (
-        <div className="p-6">
+        <div className="p-3">
             <div className="flex items-center gap-2">
                 <ArrowLeftCircleIcon
                     onClick={handleReturnHome}
@@ -164,11 +172,11 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, isSellOrder }) => {
                         </div>
                         <div className="flex justify-between">
                             <span>Seller:</span>
-                            <span>{order[7]}</span>
+                            <span>{truncateAddress(order[7])}</span>
                         </div>
                         <div className="flex justify-between">
                             <span>Buyer:</span>
-                            <span>{order[8]}</span>
+                            <span>{truncateAddress(order[8])}</span>
                         </div>
                         <div className="flex justify-between">
                             <span>Fiat:</span>
