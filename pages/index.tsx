@@ -88,7 +88,7 @@ const Main: React.FC = () => {
                 const signer = await provider.getSigner();
 
                 const publicClient = createPublicClient({
-                    chain: celoAlfajores,
+                    chain: celo,
                     transport: http(),
                 });
 
