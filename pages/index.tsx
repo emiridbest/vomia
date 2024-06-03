@@ -71,7 +71,7 @@ const Main: React.FC = () => {
             }
         }
     }, []);
-    const getMyOrders = useCallback(async (paid: boolean) => {
+    const getMyOrders = useCallback(async () => {
         if (window.ethereum) {
             try {
                 const provider = new BrowserProvider(window.ethereum);
@@ -98,10 +98,10 @@ const Main: React.FC = () => {
                     console.log(formattedBuyOrders, `11`);
                 }
                 const mySellOrders = formattedSellOrders.filter(order =>
-                    order[6].toLowerCase() === address.toLowerCase() && order[5] == paid
+                    order[6].toLowerCase() == address.toLowerCase()
                 );
                 const myBuyOrders = formattedBuyOrders.filter(order =>
-                    order[7].toLowerCase() === address.toLowerCase() && order[5] == paid
+                    order[7].toLowerCase() == address.toLowerCase()
                 );
 
                 setMySellOrders(mySellOrders);
@@ -150,7 +150,7 @@ const Main: React.FC = () => {
 
     useEffect(() => {
         getOrders();
-        getMyOrders(false);
+        getMyOrders();
         getCUSDBalance();
     }, [getOrders, getCUSDBalance]);
 
@@ -192,7 +192,7 @@ const Main: React.FC = () => {
                             </div>
                             {showBalanceDetails && (
                                 <div className="mt-2 text-black text-4xl font-bold text-overflow-hidden">
-                                    {formatBalance(cUSDBalance)} cUSD
+                                    {formatBalance(cUSDBalance)}cUSD
                                 </div>
                             )}
                             <p className="text-sm">Your wallet balance</p>
