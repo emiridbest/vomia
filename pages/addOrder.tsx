@@ -22,7 +22,7 @@ const AddOrder: React.FC = () => {
     const handleAddSellOrder = async (_amount: number, price: number, bank: string, accountNumber: string, fiatCurrency: FiatCurrency) => {
         if (window.ethereum) {
             try {
-                const amount = _amount * 1e18;
+                const amount = _amount * 1e16;
                 const provider = new BrowserProvider(window.ethereum);
                 const signer = await provider.getSigner();
                 const contract = new Contract(contractAddress, abi, signer);

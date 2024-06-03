@@ -154,14 +154,14 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, isSellOrder }) => {
                             <span>Price:</span>
                             <span>{order[2].toString()}</span>
                         </div>
-                        <div className="flex justify-between">
-                            <span>Account Number:</span>
+                        {isSellOrder &&  <div className="flex justify-between">
+                        <span>Account Number:</span>
                             <span>{order[3].toString()}</span>
-                        </div>
-                        <div className="flex justify-between">
+                        </div>}
+                        {isSellOrder &&  <div className="flex justify-between">
                             <span>Bank:</span>
                             <span>{order[4]}</span>
-                        </div>
+                        </div>}
                         <div className="flex justify-between">
                             <span>Status:</span>
                             <span>{getStatusText(order[5])}</span>
