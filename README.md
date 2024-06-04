@@ -32,3 +32,18 @@ Vomia is a decentralized peer-to-peer exchange built by Africans for Africa and 
 - Backend Development: Build the backend by September.
 - Smart Contract Audit: Conduct a smart contract audit by October.
 - Full Launch: Fully launch on Minipay before December.
+
+## Contract Address:
+https://explorer.celo.org/mainnet/address/0x8a0A65d330f3c38f103e6E342fedC58b52410136/transactions#address-tabs
+
+- ![Screenshot from 2024-06-04 08-55-17](https://github.com/emiridbest/vomia/assets/6362475/e19efc44-9716-468b-a6a3-08a050f2b004)
+
+## Project Demo Link
+- https://vomia.vercel.app/
+
+## Screenshot
+![vomia](https://github.com/emiridbest/vomia/assets/6362475/34fc49a6-562d-4986-9254-26d86736db74)
+
+
+![vomia2](https://github.com/emiridbest/vomia/assets/6362475/295b044e-4dd5-458e-88d0-4519cb96470d)
+
